@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--
+        这些属性可以在外部进行配置，并可以进行动态替换。
+        你既可以在典型的 Java 属性文件中配置这些属性，也可以在 properties 元素的子元素中设置
+    -->
+    <properties resource="config.properties" />
+    <!--
+        MyBatis 可以配置成适应多种环境，这种机制有助于将 SQL 映射应用于多种数据库之中， 现实情况下有多种理由需要这么做。
+        例如，开发、测试和生产环境需要有不同的配置；或者想在具有相同 Schema 的多个生产数据库中使用相同的 SQL 映射。还有许多类似的使用场景。
+    -->
+    <!--默认使用的环境 ID（比如：default="development"）。-->
+    <environments default="development">
+        <!--每个 environment 元素定义的环境 ID（比如：id="development"）。-->
+        <environment id="development">
+            <!--事务管理器的配置（比如：type="JDBC"）。-->
+            <!--
+                事务管理器（transactionManager）
+                在 MyBatis 中有两种类型的事务管理器（也就是 type="[JDBC|MANAGED]"）：
+                JDBC – 这个配置直接使用了 JDBC 的提交和回滚设施，它依赖从数据源获得的连接来管理事务作用域。
+                MANAGED – 这个配置几乎没做什么。它从不提交或回滚一个连接，而是让容器来管理事务的整个生命周期（比如 JEE 应用服务器的上下文）。
+                默认情况下它会关闭连接。然而一些容器并不希望连接被关闭，因此需要将 closeConnection 属性设置为 false 来阻止默认的关闭行为。
+                如果你正在使用 Spring + MyBatis，则没有必要配置事务管理器，因为 Spring 模块会使用自带的管理器来覆盖前面的配置。
+                这两种事务管理器类型都不需要设置任何属性。它们其实是类型别名，换句话说，你可以用 TransactionFactory 接口实现类的全限定名或类型别名代替它们。
+            -->
+            <transactionManager type="JDBC"/>
+            <!--数据源的配置（比如：type="POOLED"）-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+</configuration>

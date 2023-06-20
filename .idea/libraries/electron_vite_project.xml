@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="electron-vite-project">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/electron-vite-project.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

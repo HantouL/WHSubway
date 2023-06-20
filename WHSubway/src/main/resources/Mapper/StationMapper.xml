@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hantou.Mapper.StationMapper">
+    <select id="getStations" resultType="com.hantou.pojo.station">
+        SELECT * FROM station
+    </select>
+
+    <select id="getStationByName" resultType="com.hantou.pojo.station">
+        SELECT *
+        FROM station
+        WHERE name = #{stationName}
+    </select>
+
+    <select id="getStationById" resultType="com.hantou.pojo.station">
+        SELECT *
+        FROM station
+        WHERE id = #{stationId}
+    </select>
+</mapper>

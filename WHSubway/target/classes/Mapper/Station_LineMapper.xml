@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hantou.Mapper.Station_LineMapper">
+    <select id="getStation_Lines" resultType="com.hantou.pojo.station_line">
+        SELECT * FROM stationLine
+    </select>
+
+    <select id="getLine" resultType="com.hantou.pojo.station">
+        SELECT s.id,s.name
+        FROM station s
+            INNER JOIN stationLine sl ON s.id = sl.stationId
+            INNER JOIN line l ON l.id = sl.lineId
+        WHERE l.name=#{lineName}
+        ORDER BY sl.sequence;
+    </select>
+    <select id="getLinesByStations" resultType="java.lang.String">
+        SELECT l.name
+        FROM station s1
+            JOIN stationLine sl1 ON s1.id = sl1.stationId
+            JOIN line l ON sl1.lineId = l.id
+            JOIN stationLine sl2 ON sl1.lineId = sl2.lineId
+            JOIN station s2 ON sl2.stationId = s2.id
+        WHERE s1.name = #{start} AND s2.name = #{end}
+    </select>
+
+</mapper>
